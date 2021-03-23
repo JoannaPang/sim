@@ -1,4 +1,9 @@
 import tensorflow as tf
+
+if tf.__version__ >= '2.0.0':
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
+
 from tensorflow.python.ops.rnn_cell import *
 try:
     from tensorflow.python.ops.rnn_cell_impl import  _Linear
