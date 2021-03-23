@@ -1,6 +1,6 @@
 import numpy
 import json
-import cPickle as pkl
+# import cPickle as pkl
 import random
 import numpy as np
 
@@ -118,5 +118,5 @@ class DataIterator:
         history_mask_array = np.greater(history_item_array, 0) * 1.0
 
         return (uid_array, item_array, cate_array), (
-        target_array, history_item_array, history_cate_array, history_neg_item_array, history_neg_cate_array,
-        history_mask_array)
+            target_array, history_item_array, history_cate_array, history_neg_item_array, history_neg_cate_array,
+            history_mask_array)
