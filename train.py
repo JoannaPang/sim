@@ -260,11 +260,11 @@ def train(
                     test_time = time.time()
                     logging.info(
                         '%d:iter=%d, train_loss=%.4f, train_accuracy=%.4f, train_aux_loss=%.4f, train_left_loss=%.4f, total_time=%.4f ms, sess_time=%.4f ms, train_time=%.4f s' % (
-                        itr, iter, loss_sum / test_iter, accuracy_sum / test_iter, \
-                        aux_loss_sum / test_iter, left_loss_sum / test_iter,
-                        (1000 * sum_total_time) / (batch_size * test_iter),
-                        sum_sess_time * 1000 / (batch_size * test_iter),
-                        test_time - start_time))
+                            itr, iter, loss_sum / test_iter, accuracy_sum / test_iter, \
+                            aux_loss_sum / test_iter, left_loss_sum / test_iter,
+                            (1000 * sum_total_time) / (batch_size * test_iter),
+                            sum_sess_time * 1000 / (batch_size * test_iter),
+                            test_time - start_time))
                     loss_sum = 0.0
                     accuracy_sum = 0.0
                     left_loss_sum = 0.0
