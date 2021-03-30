@@ -75,16 +75,16 @@ class DataIterator:
                     ss = self.source_buffer.pop()
                 except IndexError:
                     break
-                uid = int(ss[0])
-                item_id = int(ss[1])
-                cate_id = int(ss[2])
-                label = int(ss[3])
+                uid = int(ss[0])  # user id
+                item_id = int(ss[1])  # item id
+                cate_id = int(ss[2])  # cate id
+                label = int(ss[3])  # label
 
-                hist_item = map(int, ss[4].split(","))
-                hist_cate = map(int, ss[5].split(","))
+                hist_item = map(int, ss[4].split(","))  # 100 item sequence
+                hist_cate = map(int, ss[5].split(","))  # 100 cate sequence
 
-                neg_item = map(int, ss[6].split(","))
-                neg_cate = map(int, ss[7].split(","))
+                neg_item = map(int, ss[6].split(","))  # 100 neg item sequence
+                neg_cate = map(int, ss[7].split(","))  # 100 neg cate sequence
 
                 source.append([uid, item_id, cate_id])
                 target.append([label, 1 - label])
@@ -115,6 +115,7 @@ class DataIterator:
         history_neg_item_array = np.array(neg_item_list)
         history_neg_cate_array = np.array(neg_cate_list)
 
+        # 若history_item_array中的值大于0，则mask_array中对应的位置为1.0，否则为0.0
         history_mask_array = np.greater(history_item_array, 0) * 1.0
 
         return (uid_array, item_array, cate_array), (

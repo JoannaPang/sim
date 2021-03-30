@@ -7,6 +7,7 @@ if tf.__version__ >= '2.0.0':
 from tensorflow.python.ops.rnn_cell import *
 try:
     from tensorflow.python.ops.rnn_cell_impl import  _Linear
+    # from tensorflow.contrib.rnn.python.ops import core_rnn_cell
 except ImportError:
     from tensorflow.contrib.rnn.python.ops.core_rnn_cell import *
 from tensorflow.python.ops import math_ops

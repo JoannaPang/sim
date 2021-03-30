@@ -38,6 +38,7 @@ class Model(object):
             with tf.name_scope('Embedding_layer'):
                 self.item_id_embeddings_var = tf.get_variable("item_id_embedding_var", [item_n, EMBEDDING_DIM],
                                                               trainable=True)
+                # 从item_id_embeddings_var中查找id为item_id_batch_ph的张量，然后给到item_id_batch_embedded
                 self.item_id_batch_embedded = tf.nn.embedding_lookup(self.item_id_embeddings_var, self.item_id_batch_ph)
                 self.item_id_his_batch_embedded = tf.nn.embedding_lookup(self.item_id_embeddings_var,
                                                                          self.item_id_his_batch_ph)
@@ -375,8 +376,10 @@ class Model_DIN(Model):
                     if args.level.lower() == 'debug':
                         scores = tf.Print(scores, ["score:", scores[0]], summarize=1000)
                     if args.use_first_att:
+                        # 如果score>0，则取score的值，并将其转化为float32的数据类型，不然的话，取0
                         mask = tf.cast(tf.greater(scores, tf.zeros_like(scores)), tf.float32)
                         if args.level.lower() == 'debug':
+                            # 打印mask的前1000个条目，给mask
                             mask = tf.Print(mask, ["mask:", mask[0]], summarize=1000)
                     att_func = args.att_func
                     attention_output, scores = din_attention(self.item_eb, self.item_his_eb[:, left_idx:right_idx],
